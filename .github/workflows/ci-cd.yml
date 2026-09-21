@@ -58,8 +58,6 @@ jobs:
     steps:
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
-      - name: Debug GitHub OIDC claims
-        uses: github/actions-oidc-debugger@main
         with:
           role-to-assume: arn:aws:iam::970547378393:role/StockAI-GitHubActions-ECR
           aws-region: ${{ env.AWS_REGION }}
