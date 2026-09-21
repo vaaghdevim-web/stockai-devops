@@ -1,7 +1,6 @@
-```yaml
 name: StockAI DevOps CI/CD
 
-on:
+'on':
   push:
     branches:
       - main
@@ -55,7 +54,7 @@ jobs:
     name: Push Docker Image to ECR
     runs-on: ubuntu-latest
     needs: docker-build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
 
     steps:
       - name: Checkout DevOps repository
@@ -93,4 +92,3 @@ jobs:
           echo "GitHub OIDC authentication succeeded."
           echo "ECR repository access succeeded."
           echo "Docker push stage is ready."
-```
