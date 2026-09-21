@@ -1,3 +1,4 @@
+```yaml
 name: StockAI DevOps CI/CD
 
 on:
@@ -25,6 +26,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
@@ -56,6 +58,16 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     steps:
+      - name: Checkout DevOps repository
+        uses: actions/checkout@v4
+
+      - name: Show GitHub repository context
+        run: |
+          echo "Repository: ${{ github.repository }}"
+          echo "Ref: ${{ github.ref }}"
+          echo "Repository ID: ${{ github.repository_id }}"
+          echo "Repository owner ID: ${{ github.repository_owner_id }}"
+
       - name: Configure AWS credentials using OIDC
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -81,3 +93,4 @@ jobs:
           echo "GitHub OIDC authentication succeeded."
           echo "ECR repository access succeeded."
           echo "Docker push stage is ready."
+```
