@@ -1,0 +1,48 @@
+services:
+
+  mosquitto:
+    image: eclipse-mosquitto:2
+    container_name: stockai-mosquitto
+
+    ports:
+      - "1883:1883"
+      - "8883:8883"
+
+    volumes:
+      - stockai-mosquitto-config:/mosquitto/config
+      - ./mosquitto/data:/mosquitto/data
+
+    restart: unless-stopped
+
+  telemetry-worker:
+    build:
+      context: ./telemetry-worker
+
+    container_name: stockai-telemetry-worker
+
+    ports:
+      - "8000:8000"
+
+    volumes:
+      - stockai-mosquitto-config:/certs:ro
+
+    environment:
+      MQTT_HOST: stockai-mosquitto
+      MQTT_PORT: 8883
+      MQTT_USERNAME: stockai
+      MQTT_PASSWORD: ${MQTT_PASSWORD}
+
+      DB_HOST: host.docker.internal
+      DB_PORT: 5433
+      DB_NAME: telemetry
+      DB_USERNAME: telemetry
+      DB_PASSWORD: telemetry-dev-password
+
+    depends_on:
+      - mosquitto
+
+    restart: unless-stopped
+
+volumes:
+  stockai-mosquitto-config:
+    external: true

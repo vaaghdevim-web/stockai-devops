@@ -1,0 +1,46 @@
+﻿# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Terraform state and sensitive files
+*.tfstate
+*.tfstate.*
+.terraform/
+# .terraform.lock.hcl is intentionally committed for provider version locking
+
+# Credentials and private keys
+*.pem
+*.key
+*.p12
+*.pfx
+credentials
+credentials.*
+passwd
+
+# Logs
+*.log
+logs/
+
+# Build output
+target/
+build/
+
+# IDE / OS files
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Existing backend repository
+/backend/
+
+# Mosquitto generated runtime and TLS files
+edge/mosquitto/certs/*.crt
+edge/mosquitto/certs/*.csr
+edge/mosquitto/certs/*.srl
+edge/mosquitto/data/*
+
+# Terraform generated output
+terraform/plan.txt
