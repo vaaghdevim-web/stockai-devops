@@ -42,7 +42,7 @@ jobs:
     needs: validate
 
     steps:
-     - name: Checkout DevOps repository
+      - name: Checkout DevOps repository
         uses: actions/checkout@v4
 
       - name: Checkout backend repository
@@ -55,7 +55,6 @@ jobs:
         working-directory: backend
         run: |
           docker build -t stockai-backend:ci-${{ github.sha }} .
-     
 
   ecr-push:
     name: Push Docker Image to ECR
