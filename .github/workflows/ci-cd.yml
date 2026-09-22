@@ -49,6 +49,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: saicharan5789/Stockai-31-08
+          token: ${{ secrets.BACKEND_REPO_TOKEN }}
           path: backend
 
       - name: Build backend Docker image
