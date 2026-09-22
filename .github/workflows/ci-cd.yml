@@ -42,13 +42,20 @@ jobs:
     needs: validate
 
     steps:
-      - name: Checkout DevOps repository
+     - name: Checkout DevOps repository
         uses: actions/checkout@v4
 
-      - name: Check backend source
+      - name: Checkout backend repository
+        uses: actions/checkout@v4
+        with:
+          repository: saicharan5789/Stockai-31-08
+          path: backend
+
+      - name: Build backend Docker image
+        working-directory: backend
         run: |
-          echo "Backend source is maintained in the backend repository."
-          echo "Docker build will be added after backend integration."
+          docker build -t stockai-backend:ci-${{ github.sha }} .
+     
 
   ecr-push:
     name: Push Docker Image to ECR
