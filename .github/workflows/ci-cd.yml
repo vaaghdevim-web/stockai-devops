@@ -82,8 +82,7 @@ jobs:
           path: .
           format: spdx-json
           artifact-name: stockai-source-sbom.spdx.json
-
-   codeql:
+  codeql:
     name: SAST - CodeQL
     runs-on: ubuntu-latest
     permissions:
