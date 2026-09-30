@@ -25,6 +25,8 @@ spec:
         app.kubernetes.io/name: stockai-backend
         environment: staging
     spec:
+      imagePullSecrets:
+        - name: ghcr-pull-secret
       securityContext:
         runAsNonRoot: true
         runAsUser: 10001
@@ -32,7 +34,7 @@ spec:
         fsGroup: 10001
       containers:
         - name: stockai-app
-          image: 970547378393.dkr.ecr.us-east-1.amazonaws.com/stockai-backend:IMAGE_TAG_PLACEHOLDER
+          image: ghcr.io/vaaghdevim/stockai-backend:IMAGE_TAG_PLACEHOLDER
           imagePullPolicy: IfNotPresent
           securityContext:
             allowPrivilegeEscalation: false

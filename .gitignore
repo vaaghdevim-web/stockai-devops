@@ -44,3 +44,17 @@ edge/mosquitto/data/*
 
 # Terraform generated output
 terraform/plan.txt
+
+# Local test credentials
+login.json
+
+# Local test artifacts
+curl_out.txt
+machine_telemetry_log.sql
+
+# PostgreSQL backup artifacts
+deployment/snapshots/output/
+deployment/snapshots/*.dump
+
+# Legacy AWS infrastructure - keep local, do not commit
+terraform-aws/
