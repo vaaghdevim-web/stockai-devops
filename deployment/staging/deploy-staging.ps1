@@ -19,7 +19,7 @@ kubectl apply -f (Join-Path $ManifestDir "deployment.yaml")
 kubectl apply -f (Join-Path $ManifestDir "service.yaml")
 
 kubectl -n $Namespace set image deployment/$Deployment `
-    stockai-app="970547378393.dkr.ecr.us-east-1.amazonaws.com/stockai-backend:$ImageTag"
+    stockai-app="ghcr.io/vaaghdevim/stockai-backend:$ImageTag"
 
 Write-Host "Waiting for zero-downtime rollout..."
 

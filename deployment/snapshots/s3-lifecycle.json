@@ -1,0 +1,14 @@
+{
+  "Rules": [
+    {
+      "ID": "DeletePostgresBackupsAfter30Days",
+      "Status": "Enabled",
+      "Filter": {
+        "Prefix": "postgres/"
+      },
+      "Expiration": {
+        "Days": 30
+      }
+    }
+  ]
+}
